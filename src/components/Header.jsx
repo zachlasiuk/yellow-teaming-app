@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, Heading, Spacer, Button, IconButton, useColorMode } from '@chakra-ui/react';
+import { Box, Flex, Heading, Spacer, Button, IconButton, useColorMode, useColorModeValue } from '@chakra-ui/react';
 
 import { SunIcon, MoonIcon, ChatIcon } from '@chakra-ui/icons'; 
 
@@ -7,30 +7,31 @@ import { SunIcon, MoonIcon, ChatIcon } from '@chakra-ui/icons';
 function Header({ toggleRightColumn }) {
   const { colorMode, toggleColorMode } = useColorMode();
 
+  const headingBgColor = useColorModeValue('white', 'black1');
+
   return (
-    <Box bg="teal.500" p={4}>
+    <Box bg={headingBgColor} p={4}>
       <Flex alignItems="center">
-        <Heading as="h1" size="lg" color="white">
-          My App
+        <Heading as="h1" size="lg" >
+          Yellow Teaming App
         </Heading>
         <Spacer />
         <IconButton
           aria-label="Toggle color mode"
           icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+          variant="outline"
           onClick={toggleColorMode}
           mr={4}
         />
         <IconButton
           aria-label="Toggle right column"
           icon={<ChatIcon />}
+          variant="outline"
           onClick={toggleRightColumn}
           mr={4}
         />
-        <Button colorScheme="teal" variant="outline" mr={4}>
+        <Button mr={4}>
           Sign In
-        </Button>
-        <Button colorScheme="teal" variant="solid">
-          Sign Up
         </Button>
       </Flex>
     </Box>
