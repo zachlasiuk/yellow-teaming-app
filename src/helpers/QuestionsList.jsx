@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box } from '@chakra-ui/react';
-
+import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, UnorderedList, ListItem } from '@chakra-ui/react';
 import yaml from 'js-yaml';
 
 const fetchYamlData = async (filePath) => {
@@ -44,11 +43,11 @@ const QuestionsList = ({ filePath }) => {
           </AccordionButton>
         </h2>
         <AccordionPanel pb={4}>
-          <ul>
+          <UnorderedList spacing={6} styleType="circle" ml={8}>
             {questions.map((question, index) => (
-              <li key={index}>{question}</li>
+              <ListItem key={index}>{question}</ListItem>
             ))}
-          </ul>
+        </UnorderedList>
         </AccordionPanel>
       </AccordionItem>
     </Accordion>

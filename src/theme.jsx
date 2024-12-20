@@ -9,6 +9,14 @@ const customTheme = extendTheme({
     heading: `'Lato', 'sans-serif'`, 
     body: `'Lato', 'sans-serif'`,   
   },
+  textStyles: {
+    heading: {
+      fontWeight: 300, 
+    },
+    body: {
+      fontWeight: 400, 
+    },
+  },
   styles: {
     global: (props) => ({
       body: {
@@ -76,6 +84,84 @@ const customTheme = extendTheme({
         }),
       },
     },
+
+    Table: {
+      variants: {
+        simple: (props) => ({
+          th: {
+            color: props.colorMode === "dark" ? "white" : "black",
+            fontWeight: "bold",
+            textTransform: "none",
+            fontSize: "lg",
+            margin:"0",
+            paddingLeft:"0",
+
+          },
+          td: {
+            color: props.colorMode === "dark" ? "white" : "black",
+            paddingLeft:"0",
+
+
+          },
+        }),
+      },
+    },
+    Input: {
+      baseStyle: (props) => ({
+        
+        bg: props.colorMode === 'dark' ? 'white' : 'black4',
+        color: props.colorMode === 'dark' ? 'black' : 'white',
+        borderRadius: "md",
+        _hover: {
+          bg: "lightyellow",
+        },
+      }),
+      variants: {
+        outline: (props) => ({
+          field: {
+            bg: props.colorMode === 'dark' ? 'white' : 'black4',
+            
+            color: props.colorMode === 'dark' ? 'black' : 'white',
+            borderRadius: "md",
+            //borderColor: "yellow",
+            borderWidth: 2,
+            _hover: {
+              borderColor: "yellow",
+            },
+            _focus: {
+              bg: props.colorMode === 'dark' ? 'lightyellow' : 'darkyellow',
+              borderColor: "yellow",
+            },
+            _placeholder: {
+              color: "darkgrey", 
+              fontStyle: "italic", 
+            },
+          },
+        }),
+      },
+    },
+     
+    Alert: {
+      baseStyle: (props) => ({
+      }),
+      variants: {
+        subtle: (props) => ({
+          container: {
+            bg: props.colorMode === "dark" ? "black4" : "lightgrey", 
+            color: props.colorMode === "dark" ? "white" : "black", 
+            borderRadius: "md",
+          },
+          icon: {
+            color: props.colorMode === "dark" ? "orange" : "orange", // Icon color
+          },
+        }),
+      },
+      defaultProps: {
+        variant: "subtle", 
+      },
+    },
+
+
     Accordion: {
       baseStyle: (props) => ({
         container: {

@@ -12,14 +12,13 @@ import {
   Input,
   Button,
   IconButton,
+  Alert,
+  AlertIcon,
 } from "@chakra-ui/react";
-import { AddIcon, MinusIcon } from "@chakra-ui/icons";
+import { AddIcon, DeleteIcon  } from "@chakra-ui/icons";
 
 import MarkdownRenderer from '../../helpers/MarkdownRenderer';
 import QuestionsList from '../../helpers/QuestionsList';
-
-
-
 
 
 
@@ -67,92 +66,91 @@ function HomeComponent() {
         Your Answers
       </Heading>
 
-
-
-      <Box p={4} bg="gray.800" color="white" borderRadius="md">
-      <Table variant="simple">
-        <Thead>
-          <Tr>
-            <Th color="white" textAlign="center">#</Th>
-            <Th color="white">KPI</Th>
-            <Th color="white">Anti-KPI</Th>
-            <Th color="white">Rationale</Th>
-            <Th color="white" textAlign="center">Actions</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {rows.map((row, index) => (
-            <Tr key={row.id}>
-              <Td textAlign="center">
-                <Box
-                  bg="gray.600"
-                  borderRadius="md"
-                  width="30px"
-                  height="30px"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  color="white"
-                >
-                  {row.id}
-                </Box>
-              </Td>
-              <Td>
-                <Input
-                  value={row.kpi}
-                  onChange={(e) =>
-                    handleInputChange(row.id, "kpi", e.target.value)
-                  }
-                  placeholder="Enter KPI"
-                  bg="white"
-                  color="black"
-                />
-              </Td>
-              <Td>
-                <Input
-                  value={row.antiKpi}
-                  onChange={(e) =>
-                    handleInputChange(row.id, "antiKpi", e.target.value)
-                  }
-                  placeholder="Enter Anti-KPI"
-                  bg="white"
-                  color="black"
-                />
-              </Td>
-              <Td>
-                <Input
-                  value={row.rationale}
-                  onChange={(e) =>
-                    handleInputChange(row.id, "rationale", e.target.value)
-                  }
-                  placeholder="Enter Rationale"
-                  bg="white"
-                  color="black"
-                />
-              </Td>
-              <Td textAlign="center">
-                {index > 0 && (
-                  <IconButton
-                    icon={<MinusIcon />}
-                    onClick={() => removeRow(row.id)}
-                    colorScheme="red"
-                    aria-label="Remove Row"
-                  />
-                )}
-              </Td>
+      <Box p={4} borderRadius="md">
+        <Table variant="simple">
+          <Thead>
+            <Tr>
+              <Th>#</Th>
+              <Th>KPI</Th>
+              <Th>Anti-KPI</Th>
+              <Th>Rationale</Th>
+              <Th></Th>
             </Tr>
-          ))}
-        </Tbody>
-      </Table>
-      <Button
-        onClick={addRow}
-        mt={4}
-        leftIcon={<AddIcon />}
-        colorScheme="yellow"
-        variant="solid"
-      >
-        + New KPI
-      </Button>
+          </Thead>
+          <Tbody>
+            {rows.map((row, index) => (
+              <Tr key={row.id}>
+                <Td textAlign="center">
+                  <Box
+                    bg="lightgrey"
+                    borderRadius="md"
+                    width="33px"
+                    height="33px"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    color="black4"
+                  >
+                    <b>{row.id}</b>
+                  </Box>
+                </Td>
+                <Td>
+                  <Input
+                    value={row.kpi}
+                    onChange={(e) =>
+                      handleInputChange(row.id, "kpi", e.target.value)
+                    }
+                    placeholder="Enter KPI"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    value={row.antiKpi}
+                    onChange={(e) =>
+                      handleInputChange(row.id, "antiKpi", e.target.value)
+                    }
+                    placeholder="Enter Anti-KPI"
+                  />
+                </Td>
+                <Td pr={0}>
+                  <Input
+                    value={row.rationale}
+                    onChange={(e) =>
+                      handleInputChange(row.id, "rationale", e.target.value)
+                    }
+                    placeholder="Enter Rationale"
+                  />
+                </Td>
+                <Td textAlign="center" p={0}>
+                  {index > 0 ? (
+                    <IconButton
+                      icon={<DeleteIcon  />}
+                      onClick={() => removeRow(row.id)}
+                      variant="outline"
+                      aria-label="Remove Row"
+                      size="xs" // Makes the button and icon smaller
+                    />
+                  ) : (
+                    <Box width="24px" height="24px" />
+                  )}
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+
+      <Box display="flex" justifyContent="space-between" alignItems="left" mt={4}>
+      
+        <Button
+          onClick={addRow}
+          leftIcon={<AddIcon />}
+          colorScheme="yellow"
+          variant="solid"
+        >
+          New KPI
+        </Button>
+      </Box>
+
     </Box>
 
 
