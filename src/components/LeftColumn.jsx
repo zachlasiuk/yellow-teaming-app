@@ -1,14 +1,23 @@
-import React from 'react';
-import { Box, Text } from '@chakra-ui/react';
-import SimpleSidebar from './SimpleSidebar';
+import React, { useState } from 'react';
+import { Box, Flex } from '@chakra-ui/react';
+import { Sidebar } from './Sidebar'; // Import Sidebar
+import Content from './Content'; // Import Content
 
 function LeftColumn() {
+  const [activePage, setActivePage] = useState('Home'); // State for the active page
+
   return (
-    <Box bg="gray.100" p={4} height="100vh">
-      <SimpleSidebar />
-      <Text fontSize="xl">Left Column</Text>
-      <Text>This area takes up the remaining layout width.</Text>
-    </Box>
+    <Flex height="100vh" direction="row"> {/* Ensure a horizontal layout */}
+      {/* Sidebar */}
+      <Box width={{ base: 'full', md: '60' }} bg="gray.100">
+        <Sidebar onSelect={setActivePage} />
+      </Box>
+      
+      {/* Content */}
+      <Box flex="1" p="4" overflowY="auto">
+        <Content activePage={activePage} /> {/* Pass activePage as prop */}
+      </Box>
+    </Flex>
   );
 }
 

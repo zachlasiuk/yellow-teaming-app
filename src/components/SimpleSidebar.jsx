@@ -15,6 +15,7 @@ import {
 } from '@chakra-ui/react';
 import {
   FiHome,
+  FiFileText   ,
   FiTrendingUp,
   FiCompass,
   FiStar,
@@ -28,6 +29,12 @@ const LinkItems = [
     name: 'Home',
     icon: FiHome,
     key: 'Home', // Key for ComponentMap
+    children: [], // No submenus
+  },
+  {
+    name: 'Solution details',
+    icon: FiFileText ,
+    key: 'SolutionDetails', // Key for ComponentMap
     children: [], // No submenus
   },
   {
@@ -65,6 +72,8 @@ const LinkItems = [
 
 // Components for each menu option
 const HomeComponent = () => <Text fontSize="xl">Welcome to Home!</Text>;
+const SolutionDetailsComponent = () => <Text fontSize="xl">SolutionDetails</Text>;
+
 const Trending1Component = () => <Text fontSize="xl">Check out what's trending!11111111</Text>;
 const Trending2Component = () => <Text fontSize="xl">Check out what's trending!22222</Text>;
 
@@ -77,6 +86,7 @@ const SettingsComponent = () => <Text fontSize="xl">Adjust your settings here.</
 // Map component to menu name
 const ComponentMap = {
   Home: HomeComponent,
+  SolutionDetails: SolutionDetailsComponent,
   Trending1: Trending1Component,
   Trending2: Trending2Component,
   Explore1: Explore1Component,
@@ -135,7 +145,7 @@ const SidebarContent = ({ onClose, onSelect, ...rest }) => {
       borderRight="1px"
       borderRightColor={useColorModeValue('gray.200', 'gray.700')}
       w={{ base: 'full', md: 60 }}
-      pos="fixed"
+      
       h="full"
       {...rest}
     >
