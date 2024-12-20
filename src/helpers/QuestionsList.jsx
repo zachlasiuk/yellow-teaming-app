@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box } from '@chakra-ui/react';
+
 import yaml from 'js-yaml';
 
 const fetchYamlData = async (filePath) => {
@@ -28,13 +30,30 @@ const QuestionsList = ({ filePath }) => {
     }).catch((error) => console.error('Error processing YAML file:', error));
   }, [filePath]);
 
+
+
   return (
-    <ul>
-      {questions.map((question, index) => (
-        <li key={index}>{question}</li>
-      ))}
-    </ul>
+    <Accordion allowToggle>
+      <AccordionItem>
+        <h2>
+          <AccordionButton>
+            <Box flex="1" textAlign="left">
+              Questions for reflection
+            </Box>
+            <AccordionIcon />
+          </AccordionButton>
+        </h2>
+        <AccordionPanel pb={4}>
+          <ul>
+            {questions.map((question, index) => (
+              <li key={index}>{question}</li>
+            ))}
+          </ul>
+        </AccordionPanel>
+      </AccordionItem>
+    </Accordion>
   );
+
 };
 
 export default QuestionsList;

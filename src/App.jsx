@@ -5,7 +5,6 @@ import {
   Grid,
   GridItem,
 } from '@chakra-ui/react';
-import './App.css';
 
 import Header from './components/Header';
 import LeftColumn from './components/LeftColumn';
