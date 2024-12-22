@@ -11,7 +11,8 @@ RUN yum groupinstall -y "Development Tools" && \
         python3-devel \
         python3-pip \
         swig \
-        git
+        git \
+        pcre2 pcre2-devel
 
 # Install precompiled CMake binary
 RUN wget https://github.com/Kitware/CMake/releases/download/v3.27.5/cmake-3.27.5-linux-aarch64.sh && \
@@ -22,7 +23,7 @@ RUN wget https://github.com/Kitware/CMake/releases/download/v3.27.5/cmake-3.27.5
 # Verify CMake installation
 RUN cmake --version
 
-# Install SWIG 4.x
+# Install SWIG 4.x (fix for PCRE2 issue)
 RUN wget https://github.com/swig/swig/archive/refs/tags/v4.1.1.tar.gz && \
     tar -xzf v4.1.1.tar.gz && \
     cd swig-4.1.1 && \
