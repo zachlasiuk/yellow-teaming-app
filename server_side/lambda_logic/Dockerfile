@@ -1,7 +1,7 @@
 FROM public.ecr.aws/lambda/python:3.8-arm64
 
 # Install required system packages
-RUN yum install -y libgomp wget
+RUN yum install -y libgomp wget which
 
 # Install build tools and FAISS dependencies
 RUN yum groupinstall -y "Development Tools" && \
@@ -25,7 +25,7 @@ RUN cmake --version
 # Install NumPy via pip (required by FAISS)
 RUN pip3 install numpy
 
-# Clone and build FAISS (disable GPU, tests, and perf_tests)
+# Clone and build FAISS (disable GPU, tests, perf_tests, and ensure BUILD_TESTING is OFF)
 RUN git clone https://github.com/facebookresearch/faiss.git && \
     cd faiss && \
     mkdir build && \
@@ -34,6 +34,7 @@ RUN git clone https://github.com/facebookresearch/faiss.git && \
                   -DFAISS_ENABLE_TESTS=OFF \
                   -DFAISS_BUILD_BENCHMARK=OFF \
                   -DFAISS_BUILD_PERF_TESTS=OFF \
+                  -DBUILD_TESTING=OFF \
                   -DPython3_EXECUTABLE=$(which python3) \
                   -DPython3_INCLUDE_DIR=$(python3 -c "from sysconfig import get_paths; print(get_paths()['include'])") \
                   -DPython3_LIBRARY=$(python3 -c "from sysconfig import get_config_var; print(get_config_var('LIBDIR'))") \
