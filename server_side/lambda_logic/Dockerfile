@@ -71,6 +71,7 @@ COPY RAG_embedding/metadata.pkl /var/task/metadata.pkl
 # Install Python dependencies
 COPY lambda_logic/requirements.txt /var/task/requirements.txt
 RUN pip3 install -r /var/task/requirements.txt
+# RUN pip3 install --no-cache-dir -r /var/task/requirements.txt # Try this to optimize when brave
 
 # Add your Lambda function code
 COPY lambda_logic/app.py /var/task/app.py

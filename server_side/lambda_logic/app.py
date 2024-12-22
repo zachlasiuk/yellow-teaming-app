@@ -61,7 +61,7 @@ def perform_llm_query(prompt, conversation_history=None):
 
 
 def lambda_handler(event, context):
-    '''
+    
     if event['httpMethod'] == 'OPTIONS':
         return {
             'statusCode': 200,
@@ -72,7 +72,7 @@ def lambda_handler(event, context):
             },
             'body': json.dumps('Preflight check')
         }
-    '''
+    
 
 
     try:
@@ -93,6 +93,8 @@ def lambda_handler(event, context):
             "statusCode": 200,
             'headers': {
                 'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
             },
             "body": json.dumps(result)
         }
@@ -101,6 +103,8 @@ def lambda_handler(event, context):
             "statusCode": 400,
             'headers': {
                 'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
             },
             "body": json.dumps({"error": str(e)})
         }
