@@ -33,8 +33,15 @@ def perform_rag_search(query):
     distances, indices = index.search(np.array([query_embedding]), k=5)
 
     # Retrieve top results with metadata
-    results = [{"text": metadata[i]['text'], "source": metadata[i]['source'], "distance": d}
-               for i, d in zip(indices[0], distances[0])]
+    # Convert distances to float for JSON serialization
+    results = [
+        {
+            "text": metadata[i]['text'],
+            "source": metadata[i]['source'],
+            "distance": float(d)  # Convert float32 to float
+        }
+        for i, d in zip(indices[0], distances[0])
+    ]
 
     return {"results": results}
 
