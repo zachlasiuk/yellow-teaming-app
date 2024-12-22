@@ -11,6 +11,7 @@ RUN yum groupinstall -y "Development Tools" && \
         python3-devel \
         python3-pip \
         python3-numpy \
+        swig \
         git
 
 # Install precompiled CMake binary
@@ -22,6 +23,9 @@ RUN wget https://github.com/Kitware/CMake/releases/download/v3.27.5/cmake-3.27.5
 # Verify CMake installation
 RUN cmake --version
 
+# Install NumPy via pip for full compatibility
+RUN pip3 install numpy
+
 # Clone and build FAISS (disable GPU support)
 RUN git clone https://github.com/facebookresearch/faiss.git && \
     cd faiss && \
@@ -30,7 +34,7 @@ RUN git clone https://github.com/facebookresearch/faiss.git && \
           -DPython_EXECUTABLE=/usr/bin/python3 \
           -DPython_INCLUDE_DIR=/usr/include/python3.8 \
           -DPython_LIBRARY=/usr/lib64/libpython3.8.so \
-          -DPython_NumPy_INCLUDE_DIR=/usr/lib64/python3.8/site-packages/numpy/core/include . && \
+          -DPython_NumPy_INCLUDE_DIR=/usr/local/lib64/python3.8/site-packages/numpy/core/include . && \
     cmake --build build && \
     cd build && \
     pip3 install .
