@@ -79,8 +79,8 @@ def lambda_handler(event, context):
         action = body.get("action")
         
         if action == "RAG":
-            prompt = body["prompt"]
-            result = perform_rag_search(prompt)
+            query = body["query"]
+            result = perform_rag_search(query)
         elif action == "LLM":
             prompt = body["prompt"]
             conversation_history = body.get("conversation_history", [])
