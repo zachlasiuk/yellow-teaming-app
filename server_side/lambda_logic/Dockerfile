@@ -4,12 +4,21 @@ FROM public.ecr.aws/lambda/python:3.8-arm64
 RUN yum install -y libgomp
 RUN yum groupinstall -y "Development Tools" && \
     yum install -y \
-        cmake \
+        #cmake \
         blas-devel \
         lapack-devel \
         python3-devel \
         git
 
+
+# Install newer precompiled CMake binary for FAISS
+RUN wget https://github.com/Kitware/CMake/releases/download/v3.27.5/cmake-3.27.5-linux-aarch64.sh && \
+chmod +x cmake-3.27.5-linux-aarch64.sh && \
+./cmake-3.27.5-linux-aarch64.sh --skip-license --prefix=/usr/local && \
+rm cmake-3.27.5-linux-aarch64.sh
+
+# Verify CMake installation
+RUN cmake --version
 
 # Clone and build FAISS
 RUN git clone https://github.com/facebookresearch/faiss.git && \
