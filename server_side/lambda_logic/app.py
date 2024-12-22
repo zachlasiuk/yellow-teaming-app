@@ -48,12 +48,13 @@ def perform_llm_query(prompt, conversation_history=None):
     if conversation_history:
         messages.extend(conversation_history)
 
-    response = openai_client.chat.completions.create(
-        model="gpt-4o",
+
+    completion = openai_client.chat.completions.create(
+        model="gpt-4o-mini",
         messages=messages
     )
 
-    return response.choices[0].message["content"]
+    return completion.choices[0].message
 
 
 def lambda_handler(event, context):
