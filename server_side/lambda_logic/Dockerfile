@@ -24,7 +24,7 @@ RUN cmake --version
 RUN git clone https://github.com/facebookresearch/faiss.git && \
     cd faiss && \
     mkdir build && \
-    cmake -B build -DFAISS_ENABLE_PYTHON=ON . && \
+    cmake -B build -DFAISS_ENABLE_PYTHON=ON -DFAISS_ENABLE_GPU=OFF . && \
     cmake --build build && \
     cd build && \
     pip install .
