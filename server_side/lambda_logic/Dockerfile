@@ -29,7 +29,7 @@ RUN pip3 install numpy
 RUN git clone https://github.com/facebookresearch/faiss.git && \
     cd faiss && \
     mkdir build && \
-    cmake -B build -DFAISS_ENABLE_PYTHON=ON -DFAISS_ENABLE_GPU=OFF \
+    cmake -B build -DFAISS_ENABLE_PYTHON=ON -DFAISS_ENABLE_GPU=OFF -DFAISS_ENABLE_TESTS=OFF \
           -DPython3_EXECUTABLE=$(which python3) \
           -DPython3_INCLUDE_DIR=$(python3 -c "from sysconfig import get_paths; print(get_paths()['include'])") \
           -DPython3_LIBRARY=$(python3 -c "from sysconfig import get_config_var; print(get_config_var('LIBDIR'))") \
