@@ -2,6 +2,26 @@ FROM public.ecr.aws/lambda/python:3.8-arm64
 
 # Install dependencies
 RUN yum install -y libgomp
+RUN yum groupinstall -y "Development Tools" && \
+    yum install -y \
+        cmake \
+        blas-devel \
+        lapack-devel \
+        python3-devel \
+        git
+
+
+# Clone and build FAISS
+RUN git clone https://github.com/facebookresearch/faiss.git && \
+    cd faiss && \
+    cmake -B build -DFAISS_ENABLE_PYTHON=ON && \
+    cmake --build build && \
+    cd build && \
+    pip install .
+
+# Clean up to reduce image size
+RUN yum clean all && rm -rf /var/cache/yum && \
+rm -rf /faiss
 
 # Copy FAISS index and metadata
 COPY RAG_embedding/faiss_index.bin /var/task/faiss_index.bin
