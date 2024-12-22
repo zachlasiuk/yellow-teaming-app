@@ -7,8 +7,8 @@ import numpy as np
 
 
 # Load FAISS index and metadata
-FAISS_INDEX_PATH = "/var/faiss_index.bin"
-METADATA_PATH = "/var/metadata.pkl"
+FAISS_INDEX_PATH = "/var/task/faiss_index.bin"
+METADATA_PATH = "/var/task/metadata.pkl"
 index = faiss.read_index(FAISS_INDEX_PATH)
 with open(METADATA_PATH, "rb") as f:
     metadata = pickle.load(f)
