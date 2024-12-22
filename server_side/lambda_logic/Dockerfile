@@ -14,10 +14,12 @@ RUN yum groupinstall -y "Development Tools" && \
 # Clone and build FAISS
 RUN git clone https://github.com/facebookresearch/faiss.git && \
     cd faiss && \
-    cmake -B build -DFAISS_ENABLE_PYTHON=ON && \
+    mkdir build && \
+    cmake -B build -DFAISS_ENABLE_PYTHON=ON . && \
     cmake --build build && \
     cd build && \
     pip install .
+
 
 # Clean up to reduce image size
 RUN yum clean all && rm -rf /var/cache/yum && \
