@@ -5,14 +5,14 @@ import pickle
 import os
 import numpy as np
 
-
+'''
 # Load FAISS index and metadata
 FAISS_INDEX_PATH = "/var/faiss_index.bin"
 METADATA_PATH = "/var/metadata.pkl"
 index = faiss.read_index(FAISS_INDEX_PATH)
 with open(METADATA_PATH, "rb") as f:
     metadata = pickle.load(f)
-
+'''
 
 # Set OpenAI API Key
 openai_api_key = os.getenv("OPENAI_API_KEY")    # Set by container environment
