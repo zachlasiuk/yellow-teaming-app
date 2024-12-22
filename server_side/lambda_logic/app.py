@@ -47,10 +47,6 @@ def perform_llm_query(prompt, conversation_history=None):
     messages = [{"role": "system", "content": prompt}]
     if conversation_history:
         messages.extend(conversation_history)
-    response = openai_client.ChatCompletion.create(
-        model="gpt-4",
-        messages=messages,
-    )
 
     response = openai_client.chat.completions.create(
         model="gpt-4o",
