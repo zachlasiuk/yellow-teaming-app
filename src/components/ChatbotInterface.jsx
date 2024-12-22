@@ -1,5 +1,10 @@
 import React, { useState, useRef } from 'react';
 import { Box, Text, VStack, Input, Button, HStack, Flex, useColorModeValue } from '@chakra-ui/react';
+import axios from 'axios'; // for API calls
+const ChatbotAPI_URL = "https://b8t3hd7x6a.execute-api.us-east-1.amazonaws.com/prod"
+const ChatbotAPI_Key__forRateLimiting = "https://b8t3hd7x6a.execute-api.us-east-1.amazonaws.com/prod"
+
+
 
 const ChatMessage = ({ message, isUser }) => {
   const userBg = useColorModeValue("blue", "lightblue");
@@ -59,6 +64,7 @@ const InputBar = ({ onSendMessage }) => {
   );
 };
 
+
 const ChatbotInterface = () => {
   const [messages, setMessages] = useState([
     { text: 'Hello! How can I assist you today?', isUser: false },
@@ -66,14 +72,31 @@ const ChatbotInterface = () => {
 
   const messagesEndRef = useRef(null);
 
-  const handleSendMessage = (message) => {
-    setMessages((prev) => [...prev, { text: message, isUser: true }]);
 
-    // Simulating chatbot response
-    setTimeout(() => {
-      setMessages((prev) => [...prev, { text: 'Thank you for your message!', isUser: false }]);
-    }, 1000);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSendMessage = async (message) => {
+    setMessages((prev) => [...prev, { text: message, isUser: true }]);
+    setIsLoading(true);
+  
+    try {
+      const response = await axios.post('https://<api-id>.execute-api.<region>.amazonaws.com/prod/chatbot', {
+        action: 'LLM',
+        prompt: message,
+      }, {
+        headers: { 'x-api-key': 'your-api-key-here' },
+      });
+  
+      setMessages((prev) => [...prev, { text: response.data.body, isUser: false }]);
+    } catch (error) {
+      console.error('Error communicating with chatbot:', error);
+      setMessages((prev) => [...prev, { text: 'Sorry, there was an error. Please try again.', isUser: false }]);
+    } finally {
+      setIsLoading(false);
+    }
   };
+  
+  
 
   return (
     <Box bg={useColorModeValue("lightgrey", "black2")} height="100vh" display="flex" flexDirection="column">
@@ -101,5 +124,7 @@ const ChatbotInterface = () => {
     </Box>
   );
 };
+
+
 
 export default ChatbotInterface;
