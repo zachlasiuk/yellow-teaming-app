@@ -51,12 +51,18 @@ RUN git clone https://github.com/facebookresearch/faiss.git && \
                   -DPython3_LIBRARY=$(python3 -c "from sysconfig import get_config_var; print(get_config_var('LIBDIR'))") \
                   -DPython3_NumPy_INCLUDE_DIR=$(python3 -c "import numpy; print(numpy.get_include())") . && \
     cmake --build build && \
-    cd build && \
-    pip3 install .
+    mkdir -p /var/lang/lib/python3.8/site-packages/faiss && \
+    cp build/faiss/python/_swigfaiss.so /var/lang/lib/python3.8/site-packages/faiss/ && \
+    cp build/faiss/python/swigfaiss.py /var/lang/lib/python3.8/site-packages/faiss/
 
 # Clean up to reduce image size
-RUN yum clean all && rm -rf /var/cache/yum && \
-    rm -rf /faiss
+RUN yum clean all && \
+    rm -rf /var/cache/yum && \
+    rm -rf /faiss && \
+    rm -rf /swig-4.1.1 && \
+    rm -rf /usr/local/share/cmake-3.27 && \
+    find /var/tmp -type f -delete && \
+    find /tmp -type f -delete
 
 # Copy FAISS index and metadata to Lambda task directory
 COPY RAG_embedding/faiss_index.bin /var/task/faiss_index.bin
