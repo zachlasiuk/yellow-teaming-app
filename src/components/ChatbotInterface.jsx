@@ -80,11 +80,11 @@ const ChatbotInterface = () => {
     setIsLoading(true);
   
     try {
-      const response = await axios.post('https://<api-id>.execute-api.<region>.amazonaws.com/prod/chatbot', {
+      const response = await axios.post(ChatbotAPI_URL, {
         action: 'LLM',
         prompt: message,
       }, {
-        headers: { 'x-api-key': 'your-api-key-here' },
+        headers: { 'x-api-key': ChatbotAPI_Key__forRateLimiting },
       });
   
       setMessages((prev) => [...prev, { text: response.data.body, isUser: false }]);
