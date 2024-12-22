@@ -1,3 +1,2 @@
-faiss-cpu
 openai
 numpy
