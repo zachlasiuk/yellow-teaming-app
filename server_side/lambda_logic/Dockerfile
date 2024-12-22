@@ -10,7 +10,6 @@ RUN yum groupinstall -y "Development Tools" && \
         lapack-devel \
         python3-devel \
         python3-pip \
-        python3-numpy \
         swig \
         git
 
@@ -23,18 +22,18 @@ RUN wget https://github.com/Kitware/CMake/releases/download/v3.27.5/cmake-3.27.5
 # Verify CMake installation
 RUN cmake --version
 
-# Install NumPy via pip for full compatibility
+# Install NumPy via pip (required by FAISS)
 RUN pip3 install numpy
 
-# Clone and build FAISS (disable GPU support)
+# Clone and build FAISS (aligned with INSTALL.md)
 RUN git clone https://github.com/facebookresearch/faiss.git && \
     cd faiss && \
     mkdir build && \
     cmake -B build -DFAISS_ENABLE_PYTHON=ON -DFAISS_ENABLE_GPU=OFF \
-          -DPython_EXECUTABLE=/usr/bin/python3 \
-          -DPython_INCLUDE_DIR=/usr/include/python3.8 \
-          -DPython_LIBRARY=/usr/lib64/libpython3.8.so \
-          -DPython_NumPy_INCLUDE_DIR=/usr/local/lib64/python3.8/site-packages/numpy/core/include . && \
+          -DPython3_EXECUTABLE=$(which python3) \
+          -DPython3_INCLUDE_DIR=$(python3 -c "from sysconfig import get_paths; print(get_paths()['include'])") \
+          -DPython3_LIBRARY=$(python3 -c "from sysconfig import get_config_var; print(get_config_var('LIBDIR'))") \
+          -DPython3_NumPy_INCLUDE_DIR=$(python3 -c "import numpy; print(numpy.get_include())") . && \
     cmake --build build && \
     cd build && \
     pip3 install .
