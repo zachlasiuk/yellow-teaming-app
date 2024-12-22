@@ -61,6 +61,7 @@ def perform_llm_query(prompt, conversation_history=None):
 
 
 def lambda_handler(event, context):
+    '''
     if event['httpMethod'] == 'OPTIONS':
         return {
             'statusCode': 200,
@@ -71,7 +72,7 @@ def lambda_handler(event, context):
             },
             'body': json.dumps('Preflight check')
         }
-    
+    '''
 
 
     try:
