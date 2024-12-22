@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { Box, Text, VStack, Input, Button, HStack, Flex, useColorModeValue } from '@chakra-ui/react';
 import axios from 'axios'; // for API calls
-const ChatbotAPI_URL = "https://b8t3hd7x6a.execute-api.us-east-1.amazonaws.com/prod"
-const ChatbotAPI_Key__forRateLimiting = "https://b8t3hd7x6a.execute-api.us-east-1.amazonaws.com/prod"
+const ChatbotAPI_URL = "https://q6bdw7slj4.execute-api.us-east-1.amazonaws.com/prod/chatbot";
+const ChatbotAPI_Key__forRateLimiting = "bDGpbX6eoS4nKLPMyiWIi2QBhDmf6K4w7akO9Bek"
 
 
 
@@ -84,7 +84,9 @@ const ChatbotInterface = () => {
         action: 'LLM',
         prompt: message,
       }, {
-        headers: { 'x-api-key': ChatbotAPI_Key__forRateLimiting },
+        headers: {
+          'Content-Type': 'application/json', 
+          'x-api-key': ChatbotAPI_Key__forRateLimiting },
       });
   
       setMessages((prev) => [...prev, { text: response.data.body, isUser: false }]);
