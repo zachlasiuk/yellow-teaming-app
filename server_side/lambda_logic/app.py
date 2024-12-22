@@ -61,12 +61,25 @@ def perform_llm_query(prompt, conversation_history=None):
 
 
 def lambda_handler(event, context):
+    if event['httpMethod'] == 'OPTIONS':
+        return {
+            'statusCode': 200,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+            },
+            'body': json.dumps('Preflight check')
+        }
+    
+
+
     try:
         body = json.loads(event["body"]) if "body" in event else event
         action = body.get("action")
         
         if action == "RAG":
-            query = body["query"]
+            query = body["prompt"]
             result = perform_rag_search(query)
         elif action == "LLM":
             prompt = body["prompt"]
@@ -77,10 +90,16 @@ def lambda_handler(event, context):
         
         return {
             "statusCode": 200,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+            },
             "body": json.dumps(result)
         }
     except Exception as e:
         return {
             "statusCode": 400,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+            },
             "body": json.dumps({"error": str(e)})
         }

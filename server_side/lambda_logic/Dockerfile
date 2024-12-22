@@ -14,7 +14,7 @@ RUN yum groupinstall -y "Development Tools" && \
         git \
         pcre2 pcre2-devel
 
-# Install precompiled CMake binary
+# Install precompiled CMake binary (FAISS on Arm needs 3.27+)
 RUN wget https://github.com/Kitware/CMake/releases/download/v3.27.5/cmake-3.27.5-linux-aarch64.sh && \
     chmod +x cmake-3.27.5-linux-aarch64.sh && \
     ./cmake-3.27.5-linux-aarch64.sh --skip-license --prefix=/usr/local && \
@@ -23,7 +23,7 @@ RUN wget https://github.com/Kitware/CMake/releases/download/v3.27.5/cmake-3.27.5
 # Verify CMake installation
 RUN cmake --version
 
-# Install SWIG 4.x (fix for PCRE2 issue)
+# Install SWIG 4.x (fix for PCRE2 issue when installing FAISS on Arm)
 RUN wget https://github.com/swig/swig/archive/refs/tags/v4.1.1.tar.gz && \
     tar -xzf v4.1.1.tar.gz && \
     cd swig-4.1.1 && \
@@ -33,10 +33,10 @@ RUN wget https://github.com/swig/swig/archive/refs/tags/v4.1.1.tar.gz && \
 # Verify SWIG installation
 RUN swig -version
 
-# Install NumPy via pip (required by FAISS)
+# Install NumPy via pip (again required by FAISS on Arm)
 RUN pip3 install numpy
 
-# Clone and build FAISS (disable GPU, tests, perf_tests, and ensure BUILD_TESTING is OFF)
+# Clone and build FAISS (disable GPU, tests, perf_tests, ensure BUILD_TESTING is OFF, and set explicit python paths)
 RUN git clone https://github.com/facebookresearch/faiss.git && \
     cd faiss && \
     mkdir build && \
