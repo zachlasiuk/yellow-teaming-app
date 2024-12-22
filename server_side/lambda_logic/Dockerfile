@@ -22,6 +22,16 @@ RUN wget https://github.com/Kitware/CMake/releases/download/v3.27.5/cmake-3.27.5
 # Verify CMake installation
 RUN cmake --version
 
+# Install SWIG 4.x
+RUN wget https://github.com/swig/swig/archive/refs/tags/v4.1.1.tar.gz && \
+    tar -xzf v4.1.1.tar.gz && \
+    cd swig-4.1.1 && \
+    ./autogen.sh && ./configure && make && make install && \
+    cd .. && rm -rf swig-4.1.1 v4.1.1.tar.gz
+
+# Verify SWIG installation
+RUN swig -version
+
 # Install NumPy via pip (required by FAISS)
 RUN pip3 install numpy
 
