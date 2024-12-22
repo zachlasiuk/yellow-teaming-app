@@ -54,7 +54,7 @@ def perform_llm_query(prompt, conversation_history=None):
         messages=messages
     )
 
-    return completion.choices[0].message
+    return completion.choices[0].message.content
 
 
 def lambda_handler(event, context):
