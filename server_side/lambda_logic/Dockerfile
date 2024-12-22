@@ -1,7 +1,7 @@
 FROM public.ecr.aws/lambda/python:3.8-arm64
 
 # Install dependencies
-RUN yum install -y libgomp
+RUN yum install -y libgomp wget
 RUN yum groupinstall -y "Development Tools" && \
     yum install -y \
         #cmake \
