@@ -1,8 +1,12 @@
-import React, { useState, useRef } from 'react';
-import { Box, Text, VStack, Input, Button, HStack, Flex, useColorModeValue } from '@chakra-ui/react';
+import React, { useState, useRef, useEffect, useCallback  } from 'react';
+import { Box, Text, VStack, Input, Button, HStack, Flex, Spinner, useColorModeValue } from '@chakra-ui/react';
+import { ArrowForwardIcon } from '@chakra-ui/icons'; 
 import axios from 'axios'; // for API calls
-const ChatbotAPI_URL = "https://q6bdw7slj4.execute-api.us-east-1.amazonaws.com/prod/chatbot";
-const ChatbotAPI_Key__forRateLimiting = "bDGpbX6eoS4nKLPMyiWIi2QBhDmf6K4w7akO9Bek"
+
+
+
+const ChatbotAPI_URL = import.meta.env.VITE_RESTAPI_URL;
+const ChatbotAPI_Key__forRateLimiting = import.meta.env.VITE_PUBLIC_API_KEY;
 
 
 
@@ -13,7 +17,10 @@ const ChatMessage = ({ message, isUser }) => {
   const botColor = useColorModeValue("black", "white");
 
   return (
-    <Flex justifyContent={isUser ? 'flex-end' : 'flex-start'}>
+    <Flex 
+      justifyContent={isUser ? 'flex-end' : 'flex-start'}
+      width="100%" 
+    >
       <Box
         bg={isUser ? userBg : botBg}
         color={isUser ? userColor : botColor}
@@ -21,6 +28,7 @@ const ChatMessage = ({ message, isUser }) => {
         borderRadius="md"
         maxW="90%"
         mb={2}
+        textAlign={isUser ? 'right' : 'left'}
       >
         {message}
       </Box>
@@ -28,15 +36,16 @@ const ChatMessage = ({ message, isUser }) => {
   );
 };
 
-const InputBar = ({ onSendMessage }) => {
+const InputBar = ({ onSendMessage, isLoading }) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleSend = () => {
-    if (inputValue.trim()) {
+    if (inputValue.trim() && !isLoading) { // only send when chatbot not activly thinking
       onSendMessage(inputValue);
       setInputValue('');
     }
   };
+
 
   return (
     <HStack
@@ -56,8 +65,15 @@ const InputBar = ({ onSendMessage }) => {
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={(e) => e.key === 'Enter' && handleSend()}
         flex={1}
+        isDisabled={isLoading}
       />
-      <Button bg={useColorModeValue("yellow", "darkyellow")} color={useColorModeValue("black", "white")} onClick={handleSend}>
+      <Button
+        bg={useColorModeValue("yellow", "darkyellow")}
+        color={useColorModeValue("black", "white")}
+        onClick={handleSend}
+        isLoading={isLoading}
+        loadingText="Sending"
+      >
         Send
       </Button>
     </HStack>
@@ -66,14 +82,41 @@ const InputBar = ({ onSendMessage }) => {
 
 
 const ChatbotInterface = () => {
-  const [messages, setMessages] = useState([
-    { text: 'Hello! How can I assist you today?', isUser: false },
-  ]);
-
-  const messagesEndRef = useRef(null);
+  const [messages, setMessages] = useState(() => {
+    try {
+      const savedMessages = sessionStorage.getItem('chatMessages');
+      return savedMessages ? JSON.parse(savedMessages) : [{ text: 'Hello! How can I assist you today?', isUser: false }];
+    } catch (error) {
+      console.error('Failed to load messages from session storage:', error);
+      return [{ text: 'Hello! How can I assist you today?', isUser: false }];
+    }
+  });
+  
 
 
   const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef(null);
+  //const scrollToBottom = useCallback(() => {
+  //  messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  //}, []);
+
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth',       block: 'end' });
+    }
+  };
+
+
+  useEffect(() => {
+    scrollToBottom(); // Scroll to the bottom whenever messages update
+    
+    const timeout = setTimeout(() => {
+      sessionStorage.setItem('chatMessages', JSON.stringify(messages));
+    }, 500); // Save after 500ms of no new messages
+    return () => clearTimeout(timeout);
+  }, [messages]);
+  
+
 
   const handleSendMessage = async (message) => {
     setMessages((prev) => [...prev, { text: message, isUser: true }]);
@@ -89,11 +132,24 @@ const ChatbotInterface = () => {
           'x-api-key': ChatbotAPI_Key__forRateLimiting },
       });
   
-      setMessages((prev) => [...prev, { text: response.data.body, isUser: false }]);
+      setMessages((prev) => [
+        ...prev, 
+        { text: response.data.body, isUser: false }]);
+
+
+        
     } catch (error) {
       console.error('Error communicating with chatbot:', error);
-      setMessages((prev) => [...prev, { text: 'Sorry, there was an error. Please try again.', isUser: false }]);
-    } finally {
+      const errorMessage =
+        error.response?.status === 429
+          ? 'You"ve hit the rate limit. Please wait and try again.'
+          : 'Sorry, there was an error. Please try again later.';
+      setMessages((prev) => [
+        ...prev,
+        { text: errorMessage, isUser: false },
+      ]);
+    }
+    finally {
       setIsLoading(false);
     }
   };
@@ -120,10 +176,16 @@ const ChatbotInterface = () => {
         {messages.map((msg, idx) => (
           <ChatMessage key={idx} message={msg.text} isUser={msg.isUser} />
         ))}
+        {isLoading && (
+          <Flex justifyContent="center" alignItems="center" width="100%">
+            <Spinner size="md" />
+          </Flex>
+        )}
         <div ref={messagesEndRef} />
       </VStack>
-      <InputBar onSendMessage={handleSendMessage} />
+      <InputBar onSendMessage={handleSendMessage} isLoading={isLoading} />
     </Box>
+
   );
 };
 
