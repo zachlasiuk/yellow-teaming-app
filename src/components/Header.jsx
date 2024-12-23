@@ -3,6 +3,7 @@ import { Box, Flex, Heading, Spacer, Button, IconButton, useColorMode, useColorM
 
 import { SunIcon, MoonIcon, ChatIcon } from '@chakra-ui/icons'; 
 
+import LogInterest from './LogInterest';
 
 function Header({ toggleRightColumn }) {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -30,12 +31,12 @@ function Header({ toggleRightColumn }) {
           onClick={toggleRightColumn}
           mr={4}
         />
-        <Button mr={4}>
-          Sign In
-        </Button>
+        <LogInterest mr={4} triggerText="Sign In" modalTitle="Sign In Unavailable" />
       </Flex>
     </Box>
   );
 }
 
 export default Header;
+
+

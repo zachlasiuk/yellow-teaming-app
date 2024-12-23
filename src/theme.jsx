@@ -140,7 +140,8 @@ const customTheme = extendTheme({
         }),
       },
     },
-     
+    
+    
     Alert: {
       baseStyle: (props) => ({
       }),
@@ -155,6 +156,18 @@ const customTheme = extendTheme({
             color: props.colorMode === "dark" ? "orange" : "orange", // Icon color
           },
         }),
+        toast: (props) => ({
+          container: {
+            bg: props.colorMode === "dark" ? "lightyellow" : "lightyellow", 
+            color: props.colorMode === "dark" ? "black" : "black", 
+            borderColor: props.colorMode === "dark" ? "white" : "black", 
+            borderRadius: "md",
+            boxShadow: 'lg',
+          },
+          icon: {
+            color: props.colorMode === "dark" ? "black" : "black", // Icon color
+          },
+        }),
       },
       defaultProps: {
         variant: "subtle", 
@@ -162,32 +175,6 @@ const customTheme = extendTheme({
     },
 
 
-    Accordion: {
-      baseStyle: (props) => ({
-        container: {
-          borderTopWidth: '0px',
-
-          borderRadius: '10px', 
-          _last: {
-            borderBottomWidth: '0px',
-          },
-        },
-        button: {
-          color: props.colorMode === 'dark' ? 'lightblue' : 'blue',
-          fontSize: ['16px', '18px'], // Needs manual update
-          _hover: {
-            bg: props.colorMode === 'dark' ? 'black4' : 'lightgrey',
-          },
-          _expanded: {
-            bg: props.colorMode === 'dark' ? 'black4' : 'lightgrey',
-          },
-        },
-        panel: {
-          pb: 4,
-          bg: props.colorMode === 'dark' ? 'black4' : 'lightgrey',
-        },
-      }),
-    },
   },
 
 
