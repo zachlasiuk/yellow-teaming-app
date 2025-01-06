@@ -50,7 +50,7 @@ const ModalForInterest = ({ triggerText = 'Click Me', modalTitle = 'We Value You
     <>
       <Button 
         onClick={onOpen}
-        isDisabled={true}>
+        isDisabled={false}>
             {triggerText}
     </Button>
 
