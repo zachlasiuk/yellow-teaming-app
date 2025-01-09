@@ -159,7 +159,7 @@ const ChatbotInterface = () => {
   return (
     <Box bg={useColorModeValue("lightgrey", "black2")} height="100vh" display="flex" flexDirection="column">
       <Text fontSize="xl" mb={4} p={4} bg={useColorModeValue("yellow", "darkyellow")} color={useColorModeValue("black", "white")} textAlign="center">
-        Chatbot Interface
+        Ask your Chatbot Teacher
       </Text>
       <VStack
         flex={1}

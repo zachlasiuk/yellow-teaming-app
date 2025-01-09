@@ -66,19 +66,19 @@ function HomeComponent() {
       number: 1,
       title: 'Increased ROI',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse scelerisque venenatis quam, nec luctus eros. Ut vehicula, purus in tincidunt sollicitudin.',
+        'Preempt costly mistakes by systematically considering Nth order impacts of product decisions. Mitigate harms to your company before they happen.',
     },
     {
       number: 2,
       title: 'Responsible Tech',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse scelerisque venenatis quam, nec luctus eros. Ut vehicula, purus in tincidunt sollicitudin.',
+        'An actionable process to build agentic, responsible technology.',
     },
     {
       number: 3,
       title: 'Consistent Compliance',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse scelerisque venenatis quam, nec luctus eros. Ut vehicula, purus in tincidunt sollicitudin.',
+        'Get a checklist. Each item linked to specific legislation sections. Translated to developer language.',
     },
   ];
 
