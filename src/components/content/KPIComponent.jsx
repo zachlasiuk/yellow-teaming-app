@@ -55,13 +55,13 @@ function KPIComponent() {
 
   return (
     <Box p={4}>
-      <Box pb={16}>
+      <Box pb={8}>
         <MarkdownRenderer filePath="/src/markdown_info/success_criteria/kpis/context.md" />
         <br/>
         <QuestionsList filePath="/src/markdown_info/success_criteria/kpis/questions.yaml" />
       </Box>
     <hr/>
-    <Box pt={8}>
+    <Box pt={4}>
       <Heading as="h2" size="lg" pb={8} >
         Your Answers
       </Heading>
