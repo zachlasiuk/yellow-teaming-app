@@ -205,7 +205,7 @@ const ChatbotInterface = () => {
         <div ref={messagesEndRef} />
       </VStack>
       <InputBar onSendMessage={handleSendMessage} isLoading={isLoading} />
-      <div onClick={clearHistory} style={{ marginLeft: '4px', marginTop: '4px', color: 'lightblue', cursor: 'pointer' }}>
+      <div onClick={clearHistory} style={{ marginLeft: '16px', marginTop: '0px', marginBottom: '8px', textDecoration: 'underline', color: 'lightblue', cursor: 'pointer' }}>
         Delete History
       </div>
     </Box>
