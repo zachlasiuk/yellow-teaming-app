@@ -123,7 +123,7 @@ function HomeComponent() {
           What is Yellow Teaming?
         </Heading>
         <Text>        
-        Yellow Teaming is a new concept, around the 2020s. It aims to account for how typical approaches to solution design tend to make problems worse in the long run, and provide guidance to address such issues in advance, thereby minimizing the risk of negative externalities.
+        Yellow Teaming aims to account for how typical approaches to solution design tend to make problems worse in the long run, and provide guidance to address such issues in advance, thereby minimizing the risk of negative externalities.
         This site outlines a step-by-step guide for builders to Yellow Team their product/services. Extra attention is paid to AI usage given its higher positive and negative capabilities.
         </Text>
       </Box>

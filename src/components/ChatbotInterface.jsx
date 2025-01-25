@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect, useCallback  } from 'react';
 import { Box, Text, VStack, Input, Button, HStack, Flex, Spinner, useColorModeValue } from '@chakra-ui/react';
-import { ArrowForwardIcon } from '@chakra-ui/icons'; 
 import axios from 'axios'; // for API calls
-
+import { marked } from "marked";
+import DOMPurify from 'dompurify';
 
 
 const ChatbotAPI_URL = import.meta.env.VITE_RESTAPI_URL;
@@ -30,7 +30,8 @@ const ChatMessage = ({ message, isUser }) => {
         mb={2}
         textAlign={isUser ? 'right' : 'left'}
       >
-        {message}
+        <div class="chatbot-styling" dangerouslySetInnerHTML={{ __html: message }} />
+
       </Box>
     </Flex>
   );
@@ -117,12 +118,19 @@ const ChatbotInterface = () => {
   }, [messages]);
   
 
+  const clearHistory = () => {
+    sessionStorage.clear();
+    setMessages([]);
+    console.log('Session storage cleared and messages reset');
+  };
+
 
   const handleSendMessage = async (message) => {
     setMessages((prev) => [...prev, { text: message, isUser: true }]);
     setIsLoading(true);
   
     try {
+      console.log('Prompt to bot: ',message);
       const response = await axios.post(ChatbotAPI_URL, {
         action: 'LLM',
         prompt: message,
@@ -131,11 +139,24 @@ const ChatbotInterface = () => {
           'Content-Type': 'application/json', 
           'x-api-key': ChatbotAPI_Key__forRateLimiting },
       });
-  
-      setMessages((prev) => [
-        ...prev, 
-        { text: response.data.body, isUser: false }]);
-
+      if (response.data.body) {
+        var chatbot_response = response.data.body.slice(1, -1);// Remove the outer double quotes
+        const decoded_response = decodeURIComponent(JSON.parse(`"${chatbot_response}"`));
+        const htmlContent = marked(decoded_response);
+        const sanitizedHtmlContent = DOMPurify.sanitize(htmlContent);
+        console.log('Response from bot: ',sanitizedHtmlContent);
+    
+        setMessages((prev) => [
+          ...prev, 
+          { text: sanitizedHtmlContent, isUser: false }]);  
+      }
+      else {
+        console.error('Error communicating with chatbot:', response);
+        setMessages((prev) => [
+          ...prev,
+          { text: 'Sorry, there was an error. Please try again later.', isUser: false },
+        ]);
+      }
 
         
     } catch (error) {
@@ -184,6 +205,9 @@ const ChatbotInterface = () => {
         <div ref={messagesEndRef} />
       </VStack>
       <InputBar onSendMessage={handleSendMessage} isLoading={isLoading} />
+      <div onClick={clearHistory} style={{ marginLeft: '4px', marginTop: '4px', color: 'lightblue', cursor: 'pointer' }}>
+        Delete History
+      </div>
     </Box>
 
   );
