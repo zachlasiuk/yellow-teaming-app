@@ -56,9 +56,9 @@ function KPIComponent() {
   return (
     <Box p={4}>
       <Box pb={8}>
-        <MarkdownRenderer filePath="/src/markdown_info/success_criteria/kpis/context.md" />
+        <MarkdownRenderer filePath={`${import.meta.env.BASE_URL}src/markdown_info/success_criteria/kpis/context.md`} />
         <br/>
-        <QuestionsList filePath="/src/markdown_info/success_criteria/kpis/questions.yaml" />
+        <QuestionsList filePath={`${import.meta.env.BASE_URL}src/markdown_info/success_criteria/kpis/questions.yaml`} />
       </Box>
     <hr/>
     <Box pt={4}>

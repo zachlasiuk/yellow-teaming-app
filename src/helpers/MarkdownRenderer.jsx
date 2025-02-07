@@ -8,11 +8,6 @@ import {
   Link,
   List,
   ListItem,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
 } from '@chakra-ui/react';
 
 const ChakraUIRenderer = {
@@ -33,7 +28,11 @@ const MarkdownRenderer = ({ filePath }) => {
   useEffect(() => {
     fetch(filePath)
       .then((response) => response.text())
-      .then((text) => setContent(text))
+      .then((text) => {
+        console.log('Content File path: ',filePath);
+        console.log('Fetched markdown content:', text);
+        setContent(text);
+      })
       .catch((error) => console.error('Error fetching markdown file:', error));
   }, [filePath]);
 
