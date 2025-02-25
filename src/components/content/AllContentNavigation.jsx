@@ -6,7 +6,12 @@ import HomeComponent from "./HomeComponent"
 import KPIComponent from "./KPIComponent"
 import ValuesComponent from "./ValuesComponent"
 import StandardsComponent from "./StandardsComponent"
-
+import TestingComponent from "./TestingComponent"
+import MonitoringComponent from "./MonitoringComponent"
+import MitigationComponent from "./MitigationComponent"
+import DirectComponent from "./DirectComponent"
+import ExternalityComponent from "./ExternalityComponent"
+import CapabilityComponent from "./CapabilityComponent"
 
 // Map of active pages to their components
 const ComponentMap = {
@@ -15,24 +20,24 @@ const ComponentMap = {
     Values: ValuesComponent,
     KPIs: KPIComponent,
     Standards: StandardsComponent,
-    // <Box>Techncial & Legal standards to uphold.  (checkbox for options: AI-specific laws, data-specific like GDPR, sector-specific like HIPAA, or general laws like anti-discrimination)</Box>,
     
   SectionTwo: () => <Box>Design</Box>,
     Transparency: () => <Box>Transparency:  users when dealing with AI synthetic content, biometrics, etc. (Accountability.12)</Box>,
     Uncertainty: () => <Box>Uncertainty</Box>,
     Bias: () => <Box>Bias</Box>,
+    Synergistic: () => <Box>Synergistic Design https://consilienceproject.org/development-in-progress/ </Box>,
     Privacy: () => <Box>Privacy</Box>,
     OTHER: () => <Box>other actionable responsible design things here that they can check if they've done...tbd on specifics. Will increase over time.</Box>,
 
   SectionThree: () => <Box>Assessing Impacts</Box>,
-    FirstOrderImpacts: () => <Box>FirstOrderImpacts</Box>,
-    NthOrderImpacts: () => <Box>NthOrderImpacts, externality analysis</Box>,
-    NthOrderSpecifics: () => <Box>Human capabilities, thriving, vulnerability impact analysis.</Box>,
+    FirstOrderImpacts: DirectComponent,
+    NthOrderImpacts: ExternalityComponent,
+    NthOrderSpecifics: CapabilityComponent,
 
   SectionFour: () => <Box>Measuring Impacts</Box>,
-    TestingStrategy: () => <Box>Pre deployment testing strategy. Along with methods/tools used (Measuring.6)</Box>,
-    MonitoringStrategy: () => <Box>(Measure.5 & Measure.6, Mitigation.7 requirement) - Include Error & Incident track/reporting (Mitigtaion.8) - Include documentation requirements (Accountability.11 - documentation)</Box>,
-    MitigationStrategy: () => <Box>Migitagion.9</Box>,
+    TestingStrategy: TestingComponent,
+    MonitoringStrategy: MonitoringComponent,
+    MitigationStrategy: MitigationComponent,
 
 
   SectionFive: () => <Box>Successful Structure</Box>,
@@ -54,6 +59,7 @@ export const LinkItems = [
     { name: "Transparency", key: "Transparency" },
     { name: "Uncertainty", key: "Uncertainty" },
     { name: "Bias", key: "Bias" },
+    { name: "Synergistic", key: "Synergistic" },
     { name: "Other", key: "OTHER" },
   ]},
   { name: "Assess Impacts", icon: FiCompass, key: "SectionThree", children: [

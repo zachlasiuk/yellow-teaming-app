@@ -29,6 +29,8 @@ Plan: List COMPLIANCE steps, RESPONSIBILITY action plans, then combine.
 
 2. Designing Responsibly
     a. Communicate to users whend dealing with AI synthetic content, biometrics, etc. (Accountability.12)
+        - Transparency and accounability: Enable users to seek redress for incorrect or problematic AI system outcomes.
+
     b. Communicate UNCERTAINTY (209 Yval Harari book)
     b. BIAS in datasets
     c. User Privacy
@@ -39,6 +41,7 @@ Plan: List COMPLIANCE steps, RESPONSIBILITY action plans, then combine.
 3. Assessing Impacts
     a. 1st order: Direct goals of system
     b. Nth order: Externality Mapping exercise (systems thinking example)
+        MAN 1.4 -> Document negative residual risks
     c. Nth order specifics: 
         - Human capabilities (individual & social)...aligning with your values?
         - Human thriving (individual & social)

@@ -1,0 +1,7 @@
+references:
+  - name: "CHT Foundations of Humane Technology Course"
+    type: "Best Practice"
+    sections:     
+      - section: "Module 3"
+        title: "Minimizing Harmful Consequences"
+        description: "Discussion of externalities, what they are, why they matter, and how to assess them."

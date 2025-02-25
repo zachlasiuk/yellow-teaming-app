@@ -1,0 +1,35 @@
+references:
+  - name: "US NIST Framework"
+    type: "Law"
+    sections:     
+      - section: "MEA 2.4"
+        title: "Behaivior is monitored"
+        description: "Functionality of AI system and components are monitored in production."
+      - section: "MAN 4.1"
+        title: "Monitoring plans are implemented"
+        description: "Monitoring should include mechanisms for capturing and evaluating input from users and other relevant AI actors, appeal and override, decommissioning, incident response, recovery, and change management."
+      - section: "GOV 5.2"
+        title: "Incorporate feedback"
+        description: "Mechanisms are established to enable AI actors to regularly incorporate adjudicated feedback from relevant AI actors into system design and implementation."
+
+
+  - name: "EU AI ACT High Risk Providers"
+    type: "Law"
+    sections:
+      - section: "Article 72"
+        title: "Monitoring"
+        description: "Monitor the system post deployment."
+
+  - name: "EU AI ACT High Risk Systems"
+    type: "Law"
+    sections:
+      - section: "Article 12, 19"
+        title: "System Logs"
+        description: "Requirement to keep certain automatic system logs to ensure identification of risky situations, and adheres to established safety and performance standards. Minimum of 6 months."
+
+  - name: "EU AI ACT High Risk Deployer"
+    type: "Law"
+    sections:
+      - section: "Article 26.5"
+        title: "Monitor & Inform the Provider"
+        description: "Monitor the system and inform the provider as needed."
