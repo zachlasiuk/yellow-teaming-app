@@ -1,0 +1,16 @@
+references:
+  - name: "US NIST Framework"
+    type: "Law"
+    sections:
+      - section: "MAP 1.4"
+        title: "Defining Business Context and Value"
+        description: "Align with business values, not just short-term gains."
+      - section: "MAP 3.3"
+        title: "Defining the Scope of the Application"
+        description: ""
+  - name: "CHT Foundations of Humane Technology"
+    type: "Best practice"
+    sections:
+      - section: "Module 4"
+        title: "Centering Values"
+        description: "Discusses how to incoporate values into product design."

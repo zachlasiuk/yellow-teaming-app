@@ -26,8 +26,7 @@ import ReferencesTable from '../../helpers/ReferencesTable';
 
 
 
-
-function KPIComponent() {
+function ValuesComponent() {
 
 
   const [rows, setRows] = React.useState([
@@ -57,11 +56,11 @@ function KPIComponent() {
   return (
     <Box p={4}>
       <Box pb={8}>
-        <MarkdownRenderer filePath={`${import.meta.env.BASE_URL}markdown_info/success_criteria/kpis/context.md`} />
+        <MarkdownRenderer filePath={`${import.meta.env.BASE_URL}markdown_info/success_criteria/values/context.md`} />
         <br/>
-        <QuestionsList filePath={`${import.meta.env.BASE_URL}markdown_info/success_criteria/kpis/questions.yaml`} />
+        <QuestionsList filePath={`${import.meta.env.BASE_URL}markdown_info/success_criteria/values/questions.yaml`} />
         <br/>
-        <ReferencesTable filePath={`${import.meta.env.BASE_URL}markdown_info/success_criteria/kpis/references.yaml`} />
+        <ReferencesTable filePath={`${import.meta.env.BASE_URL}markdown_info/success_criteria/values/references.yaml`} />
       </Box>
     <hr/>
     <Box pt={4}>
@@ -74,9 +73,7 @@ function KPIComponent() {
           <Thead>
             <Tr>
               <Th>#</Th>
-              <Th>KPI</Th>
-              <Th>Anti-KPI</Th>
-              <Th>Rationale</Th>
+              <Th>Value</Th>
               <Th></Th>
             </Tr>
           </Thead>
@@ -103,25 +100,7 @@ function KPIComponent() {
                     onChange={(e) =>
                       handleInputChange(row.id, "kpi", e.target.value)
                     }
-                    placeholder="Enter KPI"
-                  />
-                </Td>
-                <Td>
-                  <Input
-                    value={row.antiKpi}
-                    onChange={(e) =>
-                      handleInputChange(row.id, "antiKpi", e.target.value)
-                    }
-                    placeholder="Enter Anti-KPI"
-                  />
-                </Td>
-                <Td pr={0}>
-                  <Input
-                    value={row.rationale}
-                    onChange={(e) =>
-                      handleInputChange(row.id, "rationale", e.target.value)
-                    }
-                    placeholder="Enter Rationale"
+                    placeholder="Enter Value"
                   />
                 </Td>
                 <Td textAlign="center" p={0}>
@@ -168,4 +147,4 @@ function KPIComponent() {
   );
 }
 
-export default KPIComponent;
+export default ValuesComponent;

@@ -4,15 +4,18 @@ import { FiHome, FiFileText, FiTrendingUp, FiCompass, FiStar, FiSettings } from 
 
 import HomeComponent from "./HomeComponent"
 import KPIComponent from "./KPIComponent"
+import ValuesComponent from "./ValuesComponent"
+import StandardsComponent from "./StandardsComponent"
+
 
 // Map of active pages to their components
 const ComponentMap = {
   SectionOne: () => <Box>1</Box>,
-    Home:HomeComponent,
-    Values: () => <Box>Values</Box>,
-    Goals: () => <Box>Product Goals</Box>,
+    Home: HomeComponent,
+    Values: ValuesComponent,
     KPIs: KPIComponent,
-    Standards: () => <Box>Techncial & Legal standards to uphold.  (checkbox for options: AI-specific laws, data-specific like GDPR, sector-specific like HIPAA, or general laws like anti-discrimination)</Box>,
+    Standards: StandardsComponent,
+    // <Box>Techncial & Legal standards to uphold.  (checkbox for options: AI-specific laws, data-specific like GDPR, sector-specific like HIPAA, or general laws like anti-discrimination)</Box>,
     
   SectionTwo: () => <Box>Design</Box>,
     Transparency: () => <Box>Transparency:  users when dealing with AI synthetic content, biometrics, etc. (Accountability.12)</Box>,
@@ -44,7 +47,6 @@ export const LinkItems = [
     
       { name: "Home", key: "Home"},
       { name: "Values", key: "Values" },
-      { name: "Goals", key: "Goals" },
       { name: "KPIs", key: "KPIs" },
       { name: "Standards", key: "Standards" },
   ]},
