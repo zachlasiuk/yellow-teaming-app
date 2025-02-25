@@ -1,0 +1,16 @@
+references:
+  - name: "US NIST Framework"
+    type: "Law"
+    sections:
+      - section: "GOV 1.1"
+        title: "Legal and Regulatory Requirements"
+        description: "The organization is aware of and has documented its legal and regulatory requirements for this AI system."
+      - section: "MAP 3.4"
+        title: Standards, Certifications, and Best Practices"
+        description: "Relevant technical standards and certifications for the AI system are defined, assessed, and documented."
+  - name: "EU AI ACT"
+    type: "Law"
+    sections:
+      - section: "Article 17.1e"
+        title: "Technical Standards Documentation"
+        description: "High Risk providers requires docuementing the relevant technical standards the system (and its AI features) should meet."

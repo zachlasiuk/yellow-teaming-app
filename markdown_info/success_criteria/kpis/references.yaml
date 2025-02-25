@@ -1,0 +1,16 @@
+references:
+  - name: "US NIST Framework"
+    type: "Law"
+    sections:
+      - section: "MAP 3.1"
+        title: "Examining and Documenting Benefits"
+        description: ""
+      - section: "MAP 3.3"
+        title: "Defining the Scope of the Application"
+        description: "Define uacceptable outcomes."
+  - name: "CHT Foundations of Humane Technology"
+    type: "Best practice"
+    sections:
+      - section: "??"
+        title: "AntiKPIs?"
+        description: "Can't find in course, need to relookup"
