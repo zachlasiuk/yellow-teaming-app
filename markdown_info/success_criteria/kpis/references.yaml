@@ -11,6 +11,6 @@ references:
   - name: "CHT Foundations of Humane Technology"
     type: "Best practice"
     sections:
-      - section: "??"
-        title: "AntiKPIs?"
-        description: "Can't find in course, need to relookup"
+      - section: "Module 3"
+        title: "Minimizing Harmful Consequences"
+        description: "Mention anti-kpis as an implementable technique."

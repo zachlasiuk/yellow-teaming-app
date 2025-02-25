@@ -1,0 +1,38 @@
+references:
+  - name: "US NIST Framework"
+    type: "Law"
+    sections:     
+      - section: "MAN 4.3"
+        title: "Incident communication"
+        description: "Incidents and errors are communicated to relevant AI actors including affected communities. Processes for tracking, responding to, and recovering from incidents and errors are followed and documented."
+      - section: "GOV 4.3"
+        title: "Organizational practices for incident response"
+        description: "Establish procedures to respond to incidents that also publically discloses issues."
+      - section: "GOV 6.2"
+        title: "Contingency processes"
+        description: "Establish policies for handling third-party system failures to include consideration of redundancy mechanisms for vital third-party AI systems."
+
+  - name: "EU AI ACT High Risk Providers"
+    type: "Law"
+    sections:
+      - section: "Article 17.1(i)"
+        title: "Procedures for Serious Incident Reporting"
+        description: "Providers must establish procedures related to the reporting of serious incidents in accordance with Article 73, as part of their quality management system."
+      - section: "Article 73"
+        title: "Reporting of Serious Incidents"
+        description: "Providers are required to report any serious incidents involving high-risk AI systems to the market surveillance authorities of the Member States where the incident occurred, immediately after establishing a causal link or reasonable likelihood of such a link, and no later than 15 days after becoming aware of the incident."
+
+
+  - name: "EU AI ACT High Risk Deployer"
+    type: "Law"
+    sections:
+      - section: "Article 26.5"
+        title: "Monitoring and Reporting Obligations"
+        description: "Deployers of high-risk AI systems must monitor their operation and promptly inform providers or distributors about any serious incidents or malfunctioning that may affect compliance with the AI Act."
+
+  - name: "EU AI ACT GPAI with Systemic Risk"
+    type: "Law"
+    sections:
+      - section: "Article 55.1(c)"
+        title: "Incident Tracking and Reporting"
+        description: "Providers of general-purpose AI models identified as having systemic risk are required to track, document, and report serious incidents and any corrective measures to the AI Office and relevant national authorities without undue delay."
