@@ -1,0 +1,25 @@
+references:
+  - name: "EU AI ACT"
+    type: "Law"
+    sections:
+      - section: "Article 50"
+        title: "Transparency Obligations"
+        description: "AI systems must inform people they are engaging with AI, unless designed to be self-evident."
+references:
+  - name: "EU AI ACT - High Risk Systems"
+    type: "Law"
+    sections:
+      - section: "Article 13"
+        title: "Capabilities and limitations"
+        description: "AI systems must be transparent about their capabilities and limitations."
+      - section: "Article 86"
+        title: "Explanations"
+        description: "Individuals must be able to obtain clear and meaningful explanations of decisions, especially when having effects on health, safety, or rights."
+references:
+  - name: "TO ADD"
+    type: "Law"
+    sections:
+      - section: "(Accountability.12)"
+        title: ""
+        description: ""
+ 

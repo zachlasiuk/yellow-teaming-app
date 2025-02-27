@@ -37,3 +37,4 @@ These costs don't appear in P&L statements. However, they erode trust, increase 
 4. Costs: If left unaddressed, who will bear the cost? How costly will it be?
 5. Path to reduction: How might less of this externality be created?
 
+[Fill out this worksheet for a visual of the below](https://s3.amazonaws.com/com.appolearning.files/production/uploads/uploaded_file/3445572b-9e9f-4d9b-87ac-d7a03465e473/Identifying_Externalities_Worksheet.pdf).
