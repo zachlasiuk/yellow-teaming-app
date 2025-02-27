@@ -55,7 +55,7 @@ function AgenticComponent() {
 
   return (
     <Box p={4}>
-      <Box pb={8}>
+      <Box pb={8} className="markdown-info" >
         <MarkdownRenderer filePath={`${import.meta.env.BASE_URL}markdown_info/success_criteria/agentic/context.md`} />
         <br/>
         <QuestionsList filePath={`${import.meta.env.BASE_URL}markdown_info/success_criteria/agentic/questions.yaml`} />

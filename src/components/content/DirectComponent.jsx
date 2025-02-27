@@ -55,7 +55,7 @@ function DirectComponent() {
 
   return (
     <Box p={4}>
-      <Box pb={8}>
+      <Box pb={8} className="markdown-info">
         <MarkdownRenderer filePath={`${import.meta.env.BASE_URL}markdown_info/success_criteria/direct/context.md`} />
         <br/>
         <QuestionsList filePath={`${import.meta.env.BASE_URL}markdown_info/success_criteria/direct/questions.yaml`} />

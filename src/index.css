@@ -4,6 +4,15 @@ body {
     -moz-osx-font-smoothing: grayscale;
   }
 
+.markdown-info a {
+  color: #00c1de;
+  text-decoration: underline;
+}
+.markdown-info a:hover {
+  color: #ffe999;
+  text-decoration: underline;
+}
+
 .chatbot-styling * {
   margin-bottom: 4px;
 }
@@ -17,4 +26,31 @@ body {
   border: 1px solid darkgrey;
   border-radius: 4px;
   padding: 2px 4px;
+}
+
+
+
+.markdown-info table {
+  width: 100%;
+  border: 1px solid grey;
+}
+
+.markdown-info table td, .markdown-info table th {
+  padding-right: 8px;
+  padding-left: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  vertical-align: top;
+}
+
+.markdown-info table td:last-child, .markdown-info table th:last-child {
+  padding-left: 24px;
+}
+.markdown-info table tr {
+  border-bottom: 1px solid grey;
+}
+.markdown-info table thead tr {
+  text-align: left;
+  background-color: black;
+  font-size: 30px;
 }
