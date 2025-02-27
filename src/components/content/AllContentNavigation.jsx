@@ -6,12 +6,26 @@ import HomeComponent from "./HomeComponent"
 import KPIComponent from "./KPIComponent"
 import ValuesComponent from "./ValuesComponent"
 import StandardsComponent from "./StandardsComponent"
+
 import TestingComponent from "./TestingComponent"
 import MonitoringComponent from "./MonitoringComponent"
 import MitigationComponent from "./MitigationComponent"
+
 import DirectComponent from "./DirectComponent"
 import ExternalityComponent from "./ExternalityComponent"
 import CapabilityComponent from "./CapabilityComponent"
+
+import BiasComponent from "./BiasComponent"
+import SynergisticComponent from "./SynergisticComponent"
+import TransparencyComponent from "./TransparencyComponent"
+import UncertaintyComponent from "./UncertaintyComponent"
+import PrivacyComponent from "./PrivacyComponent"
+import AgenticComponent from "./AgenticComponent"
+
+import GovernanceComponent from "./GovernanceComponent"
+import RolesComponent from "./RolesComponent"
+import HumanintheloopComponent from "./HumanintheloopComponent"
+
 
 // Map of active pages to their components
 const ComponentMap = {
@@ -22,12 +36,12 @@ const ComponentMap = {
     Standards: StandardsComponent,
     
   SectionTwo: () => <Box>Design</Box>,
-    Transparency: () => <Box>Transparency:  users when dealing with AI synthetic content, biometrics, etc. (Accountability.12)</Box>,
-    Uncertainty: () => <Box>Uncertainty</Box>,
-    Bias: () => <Box>Bias</Box>,
-    Synergistic: () => <Box>Synergistic Design https://consilienceproject.org/development-in-progress/ </Box>,
-    Privacy: () => <Box>Privacy</Box>,
-    OTHER: () => <Box>other actionable responsible design things here that they can check if they've done...tbd on specifics. Will increase over time.</Box>,
+    Transparency: TransparencyComponent,
+    Uncertainty: UncertaintyComponent,
+    Bias: BiasComponent,
+    Synergistic: SynergisticComponent,
+    Privacy: PrivacyComponent,
+    Agentic: AgenticComponent,
 
   SectionThree: () => <Box>Assessing Impacts</Box>,
     FirstOrderImpacts: DirectComponent,
@@ -41,9 +55,9 @@ const ComponentMap = {
 
 
   SectionFive: () => <Box>Successful Structure</Box>,
-    HumanInLoop: () => <Box>HIL oversight</Box>,
-    Policies: () => <Box>For data and governance</Box>,
-    Roles: () => <Box>WHO is specifically responsible for risk management?</Box>,
+    HumanInLoop: HumanintheloopComponent,
+    Policies: GovernanceComponent,
+    Roles: RolesComponent,
 };
 
 // Navigation links
@@ -60,7 +74,8 @@ export const LinkItems = [
     { name: "Uncertainty", key: "Uncertainty" },
     { name: "Bias", key: "Bias" },
     { name: "Synergistic", key: "Synergistic" },
-    { name: "Other", key: "OTHER" },
+    { name: "Privacy", key: "Privacy" },
+    { name: "Agentic", key: "Agentic" }
   ]},
   { name: "Assess Impacts", icon: FiCompass, key: "SectionThree", children: [
     { name: "1st Order", key: "FirstOrderImpacts" },
