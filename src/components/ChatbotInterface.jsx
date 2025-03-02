@@ -30,7 +30,7 @@ const ChatMessage = ({ message, isUser }) => {
         mb={2}
         textAlign={isUser ? 'right' : 'left'}
       >
-        <div class="chatbot-styling" dangerouslySetInnerHTML={{ __html: message }} />
+        <div className="chatbot-styling" dangerouslySetInnerHTML={{ __html: message }} />
 
       </Box>
     </Flex>

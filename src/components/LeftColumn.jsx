@@ -40,7 +40,7 @@ function LeftColumn() {
   return (
     <Flex height="100vh" direction="row"> {/* Ensure a horizontal layout */}
       {/* Sidebar */}
-      <Box width={{ base: 'full', md: '60' }} bg="gray.100">
+      <Box width={{ base: 'full', md: '80' }} bg="gray.100">
         
         <Sidebar onSelect={setActivePage} activePage={activePage} />
       </Box>

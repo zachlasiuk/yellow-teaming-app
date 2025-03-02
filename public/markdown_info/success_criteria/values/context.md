@@ -9,3 +9,8 @@ Not thinking of values during product design is abdecating your responsibility, 
 > Identify your values to defend them
 
 Don't think 'who are we to choose?'. Instead, the question is 'we *must* choose, so choose wisely.' Incorporate complex values into your design and implementations, beyond looking at narrow KPI metrics only. For insipration, the [BBC developed 14 core values](https://www.bbc.co.uk/rd/projects/digital-wellbeing) that underpin human's psychological drivers and innate needs. 
+
+There are three components with identifing your values:
+1. Identifying your values
+2. Embedding them in your system
+3. Assessing whether these efforts were successful

@@ -63,34 +63,33 @@ const ComponentMap = {
 // Navigation links
 export const LinkItems = [
   { name: "Identify Goals", icon: FiFileText, key: "SectionOne", children: [
-    
       { name: "Home", key: "Home"},
-      { name: "Values", key: "Values" },
-      { name: "KPIs", key: "KPIs" },
-      { name: "Standards", key: "Standards" },
+      { name: "1) Values", key: "Values" },
+      { name: "2) KPIs", key: "KPIs" },
+      { name: "3) Standards", key: "Standards" },
   ]},
   { name: "Utilize Design", icon: FiTrendingUp, key: "SectionTwo", children: [
-    { name: "Transparency", key: "Transparency" },
-    { name: "Uncertainty", key: "Uncertainty" },
-    { name: "Bias", key: "Bias" },
-    { name: "Synergistic", key: "Synergistic" },
-    { name: "Privacy", key: "Privacy" },
-    { name: "Agentic", key: "Agentic" }
+    { name: "4) Transparency", key: "Transparency", },
+    { name: "5) Uncertainty", key: "Uncertainty" },
+    { name: "6) Bias", key: "Bias" },
+    { name: "7) Synergistic", key: "Synergistic" },
+    { name: "8) Privacy", key: "Privacy" },
+    { name: "9) Agentic", key: "Agentic" }
   ]},
   { name: "Assess Impacts", icon: FiCompass, key: "SectionThree", children: [
-    { name: "1st Order", key: "FirstOrderImpacts" },
-    { name: "Nth Order", key: "NthOrderImpacts" },
-    { name: "Deep Dive", key: "NthOrderSpecifics" },
+    { name: "10) 1st Order", key: "FirstOrderImpacts" },
+    { name: "11) Nth Order", key: "NthOrderImpacts" },
+    { name: "12) Deep Dive", key: "NthOrderSpecifics" },
   ]},
   { name: "Measure Impacts", icon: FiStar, key: "SectionFour", children: [
-    { name: "Testing Strategy", key: "TestingStrategy" },
-    { name: "Monitoring Strategy", key: "MonitoringStrategy" },
-    { name: "Mitigation Strategy", key: "MitigationStrategy" },
+    { name: "13) Testing Strategy", key: "TestingStrategy" },
+    { name: "14) Monitoring Strategy", key: "MonitoringStrategy" },
+    { name: "15) Mitigation Strategy", key: "MitigationStrategy" },
   ]},
   { name: "Define Policies", icon: FiSettings, key: "SectionFive", children: [
-    { name: "Human-In-The-Loop", key: "HumanInLoop" },
-    { name: "Governance Policies", key: "Policies" },
-    { name: "Roles", key: "Roles" },
+    { name: "16) Human-In-The-Loop", key: "HumanInLoop" },
+    { name: "17) Governance Policies", key: "Policies" },
+    { name: "18) Roles", key: "Roles" },
   ]},
 
 ];

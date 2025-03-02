@@ -4,6 +4,17 @@ body {
     -moz-osx-font-smoothing: grayscale;
   }
 
+  .home-text {
+    color:#ffc700;
+
+    cursor: pointer;
+  }
+  .home-text:hover {
+    color:#ffe999;
+    text-decoration: underline;
+  }
+
+
 .markdown-info a {
   color: #00c1de;
   text-decoration: underline;

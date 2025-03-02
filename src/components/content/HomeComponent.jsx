@@ -120,7 +120,7 @@ function HomeComponent() {
     <Box>
       <Box p={4}>
         <Heading as="h1" pb={8} >
-          What is Yellow Teaming?
+          Yellow Teaming - Overview
         </Heading>
         <Text>        
         Yellow Teaming aims to account for how typical approaches to solution design tend to make problems worse in the long run, and provide guidance to address such issues in advance, thereby minimizing the risk of negative externalities.
@@ -128,7 +128,7 @@ function HomeComponent() {
         </Text>
       </Box>
       <Box padding="4">
-        <Heading>
+        <Heading as="h2" pb={4}>
           What are the benefits to Yellow Teaming?
         </Heading>
         <Text pb={4}>

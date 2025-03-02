@@ -25,6 +25,9 @@ function StandardsComponent() {
           options: [
             { label: "GDPR Compliance", id: "gdpr", link: "https://gdpr.eu/" },
             { label: "CCPA Regulations", id: "ccpa", link: "https://oag.ca.gov/privacy/ccpa" },
+            { label: "HIPAA Compliance", id: "hipaa", link: "https://www.hhs.gov/hipaa/" },
+            { label: "SOC 2 Compliance", id: "soc2", link: "https://www.aicpa.org/soc4so" },
+            { label: "FISMA Security Requirements", id: "fisma", link: "https://www.cisa.gov/fisma" },
           ],
         },
         {
@@ -32,6 +35,14 @@ function StandardsComponent() {
           options: [
             { label: "EU AI Act", id: "eu_ai_act", link: "https://ec.europa.eu/ai-act" },
             { label: "IEEE AI Ethics", id: "ieee_ai_ethics", link: "https://ethicsinaction.ieee.org/" },
+            { label: "OECD AI Principles", id: "oecd_ai", link: "https://oecd.ai/en/" },
+          ],
+        },
+        {
+          section: "Cybersecurity Standards",
+          options: [
+            { label: "NIST Cybersecurity Framework", id: "nist_cyber", link: "https://www.nist.gov/cyberframework" },
+            { label: "ISO/IEC 27001", id: "iso_27001", link: "https://www.iso.org/isoiec-27001-information-security.html" },
           ],
         },
       ],
@@ -49,8 +60,29 @@ function StandardsComponent() {
         {
           section: "Healthcare",
           options: [
-            { label: "HIPAA Compliance", id: "hipaa", link: "https://www.hhs.gov/hipaa/" },
             { label: "FHIR Standard", id: "fhir", link: "https://www.hl7.org/fhir/" },
+            { label: "DICOM Medical Imaging Standard", id: "dicom", link: "https://www.dicomstandard.org/" },
+          ],
+        },
+        {
+          section: "Finance & Payments",
+          options: [
+            { label: "PCI DSS Compliance", id: "pci_dss", link: "https://www.pcisecuritystandards.org/" },
+            { label: "SOX Compliance", id: "sox", link: "https://www.sec.gov/spotlight/soxcomp.htm" },
+          ],
+        },
+        {
+          section: "Accessibility & Usability",
+          options: [
+            { label: "WCAG Accessibility Standards", id: "wcag", link: "https://www.w3.org/WAI/standards-guidelines/wcag/" },
+            { label: "Section 508 Compliance", id: "section_508", link: "https://www.section508.gov/" },
+          ],
+        },
+        {
+          section: "Environmental Sustainability",
+          options: [
+            { label: "ISO 14001 Environmental Management", id: "iso_14001", link: "https://www.iso.org/iso-14001-environmental-management.html" },
+            { label: "Energy Star Certification", id: "energy_star", link: "https://www.energystar.gov/" },
           ],
         },
       ],
@@ -75,11 +107,10 @@ function StandardsComponent() {
 
   // Handle checkbox toggle
   const handleCheckboxChange = (event, id) => {
-    const isChecked = event.target.checked;
     setSelectedCheckboxes((prev) => {
-      const updatedState = { ...prev, [id]: isChecked };
+      const updatedState = { ...prev, [id]: event.target.checked };
       console.log("Checkbox Updated:", updatedState); // Debugging log
-      return updatedState;
+      return { ...updatedState }; // Ensure a new object reference is returned
     });
   };
 
@@ -113,16 +144,16 @@ function StandardsComponent() {
                       {section.section}
                     </Text>
                     {section.options.map((option) => (
-                      <Checkbox
-                        key={option.id}
-                        isChecked={selectedCheckboxes[option.id] || false}
-                        onChange={(e) => handleCheckboxChange(e, option.id)}
-                        pb={1}
-                      >
-                        <Link href={option.link} isExternal color="blue.500">
-                          {option.label}
-                        </Link>
-                      </Checkbox>
+                      <Box key={option.id} pb={1}>
+                        <Checkbox
+                          isChecked={selectedCheckboxes[option.id] || false}
+                          onChange={(e) => handleCheckboxChange(e, option.id)}
+                        >
+                          <Link href={option.link} isExternal color="blue.500">
+                            {option.label}
+                          </Link>
+                        </Checkbox>
+                      </Box>
                     ))}
                     <Divider mt={3} />
                   </Box>

@@ -19,8 +19,8 @@ export const Sidebar = ({ onSelect, activePage }) => {
       h="full"
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          Checklist 
+        <Text className="home-text" fontSize="2xl" fontWeight="bold" onClick={() => onSelect('Home')}>
+          Checklist Overview 
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} />
       </Flex>
@@ -38,11 +38,13 @@ export const Sidebar = ({ onSelect, activePage }) => {
                 onSelect(link.key); // Notify parent of selection
               }
             }}
-          >
+            >
             {link.name}
-          </NavItem>
-          {expandedMenu === link.key &&
-            link.children.map((child) => (
+            </NavItem>
+            {expandedMenu === link.key &&
+            link.children
+              .filter((child) => child.name !== 'Home') // Skip listing when the child.name is 'Home'
+              .map((child) => (
               <NavItem
                 key={child.key}
                 pl="8"

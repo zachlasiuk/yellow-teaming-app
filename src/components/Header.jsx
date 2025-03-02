@@ -17,6 +17,7 @@ function Header({ toggleRightColumn }) {
           Yellow Teaming App
         </Heading>
         <Spacer />
+        {/*
         <IconButton
           aria-label="Toggle color mode"
           icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
@@ -24,6 +25,7 @@ function Header({ toggleRightColumn }) {
           onClick={toggleColorMode}
           mr={4}
         />
+        */}
         <IconButton
           aria-label="Toggle right column"
           icon={<ChatIcon />}
@@ -31,7 +33,7 @@ function Header({ toggleRightColumn }) {
           onClick={toggleRightColumn}
           mr={4}
         />
-        <LogInterest mr={4} triggerText="Sign In" modalTitle="Sign In Unavailable" />
+        <LogInterest mr={4} triggerText="Note your Interest" modalTitle="Signal your interest to our team" />
       </Flex>
     </Box>
   );

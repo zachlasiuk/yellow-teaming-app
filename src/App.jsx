@@ -12,7 +12,7 @@ import RightColumn from './components/RightColumn';
 
 
 function App() {
-  const [isRightColumnVisible, setRightColumnVisible] = useState(true);
+  const [isRightColumnVisible, setRightColumnVisible] = useState(false);
 
   const toggleRightColumn = () => {
     setRightColumnVisible(!isRightColumnVisible);
