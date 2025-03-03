@@ -165,7 +165,7 @@ function HomeComponent() {
               <p>There is no barrier to start Yellow Teaming your product/service now - the concepts add value from concept ideation all the way through testing and deployment.
               The process is highly iterative and project-specific. Look through the Yellow Teaming sections, read how it works, and fill out some answers now. You and your team will likely go through each section a few times as your solution evolves.</p>
               <br />
-              <Button leftIcon={<FiDownload />} onClick={() => handleDownload("/yellow_teaming_checklist.docx")}>
+              <Button leftIcon={<FiDownload />} onClick={() => handleDownload("/yellow-teaming-app/yellow_teaming_checklist.docx")}>
                 Download Yellow-Teaming.docx Checklist
               </Button>
             </TabPanel>
