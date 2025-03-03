@@ -1,8 +1,8 @@
 import React from 'react';
-import { Card, CardHeader, CardBody, Grid, Box, Text, Heading, Divider, Tabs, TabList, TabPanels, Tab, TabPanel, TabIndicator } from '@chakra-ui/react';
+import { Card, CardHeader, CardBody, Grid, Box, Text, Heading, Button, Divider, Tabs, TabList, TabPanels, Tab, TabPanel, TabIndicator } from '@chakra-ui/react';
 
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, UnorderedList, ListItem } from '@chakra-ui/react';
-import { FiAward } from 'react-icons/fi';
+import { FiDownload, FiExternalLink  } from 'react-icons/fi';
 
 
 const CustomCard = ({ number, title, description }) => (
@@ -64,21 +64,21 @@ function HomeComponent() {
   const cards = [
     {
       number: 1,
-      title: 'Increased ROI',
+      title: 'Better Products',
       description:
-        'Preempt costly mistakes by systematically considering Nth order impacts of product decisions. Mitigate harms to your company before they happen.',
+        'Create better product-market fit by understanding how all your users are affected by your product.',
     },
     {
       number: 2,
-      title: 'Responsible Tech',
+      title: 'Lower Risk',
       description:
-        'An actionable process to build agentic, responsible technology.',
+        'Lower company risk by walking through Nth-order consequences of product decisions. Avoid costly mistakes before they happen.',
     },
     {
       number: 3,
-      title: 'Consistent Compliance',
+      title: 'Easier Compliance',
       description:
-        'Get a checklist. Each item linked to specific legislation sections. Translated to developer language.',
+        'Global regulation is written for lawyers. This framework translates it for a process developers already follow.',
     },
   ];
 
@@ -96,24 +96,27 @@ function HomeComponent() {
       question: 'Where did this concept come from?',
       answer:
         `
-        Concillience Project, etc, lots of places.
-        `,
-    },
-    {
-      question: 'How are you using my data?',
-      answer:
-        `
-        Concillience Project, etc, lots of places.
+        Concillience Project's paper Development in Progress: https://consilienceproject.org/development-in-progress/
         `,
     },
     {
       question: 'Is there an offline version?',
       answer:
         `
-        Yes, as a standalone checklist you can fill out. The version of the Word checklist will match this online version as this evolves.
+        Yes, download the standalone checklist to Yellow Teaming your project locally. The version of the Word checklist will match this online version as this evolves.
         `,
     },
   ];
+
+  const handleDownload = (href) => {
+    const link = document.createElement("a");
+    link.href = href; // File path provided as argument
+    link.download = href.split('/').pop(); // Extract file name from href
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
 
 
   return (
@@ -152,27 +155,30 @@ function HomeComponent() {
         </Heading>
         <Tabs isFitted variant='enclosed'>
           <TabList>
-            <Tab>Begin & Iterate</Tab>
-            <Tab>Learn & Chat</Tab>
-            <Tab>Download & Share</Tab>
+            <Tab>Begin</Tab>
+            <Tab>Chat</Tab>
+            <Tab>Share</Tab>
           </TabList>
           <TabIndicator mt='-1.5px' height='2px' bg='lightblue' borderRadius='1px' />
           <TabPanels>
             <TabPanel>
               <p>There is no barrier to start Yellow Teaming your product/service now - the concepts add value from concept ideation all the way through testing and deployment.
               The process is highly iterative and project-specific. Look through the Yellow Teaming sections, read how it works, and fill out some answers now. You and your team will likely go through each section a few times as your solution evolves.</p>
+              <br />
+              <Button leftIcon={<FiDownload />} onClick={() => handleDownload("/yellow_teaming_checklist.docx")}>
+                Download Yellow-Teaming.docx Checklist
+              </Button>
+            </TabPanel>
+            <TabPanel>
+              <p>Chat with the public & free Product Assessment GPT to assess your specific product feature's potential consequences. This is a great way to get a sense of the types of questions you should be asking yourself and your team. </p>
+                <br />
+                <Button leftIcon={<FiExternalLink />} onClick={() => handleDownload("https://chatgpt.com/g/g-67c4716e16288191bda6b706c484adfa-yellowteamgptv2")}>
+                  Visit ProductAssessmentGPT
+                </Button>
             </TabPanel>
             <TabPanel>
               <p>
-                There are several resources to help you get the most out of your Yellow Teaming. Each section has examples of how existing products approached their Yellow Team. 
-                There is also a LLM-based chatbot that can take two personas: 
-                (1) Tarra the Teacher - Tarra is tuned to help you along your Yellow Teaming process. Ask it to explain new terms, provide examples, brainstorm ideas, and more. 
-                (2) Claire the Compliance expert - Claire is a RAG-based chatbot that you can ask specific questions about key AI legistlation, currently including the EU AI Act and USA NIST AI Playbook. Use it to 'talk' to the legislation to understand how to comply with the letter and spirit of the law.
-                </p>
-            </TabPanel>
-            <TabPanel>
-              <p>
-                After completing all Yellow Teaming sections, you can export a PDF of your answers that you can use in a multitude of ways:
+                After completing all Yellow Teaming sections, send to your team and stakeholders. This can be used as a:
                 - Compliance backstop: A hard resource for your business to refer to if asked to prove compliance with global tech legislation.
                 - Build trust: Share your Yellow Teaming activities publically to your business customers and/or end-users. This demonstrates you are putting in a good-faith effort to build responsible technology that takes steps to not exploit or decive people.
               </p>
@@ -188,6 +194,7 @@ function HomeComponent() {
         <Box>
         {faqs_home.map((faq, index) => (
               <FAQ
+                key={index}
                 question={faq.question}
                 answer={faq.answer}
               />
